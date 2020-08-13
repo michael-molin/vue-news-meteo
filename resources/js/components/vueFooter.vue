@@ -1,6 +1,6 @@
 <template>
 
-<div class="col-12">
+<div class="container">
     <vueColFooter v-for="(dato, index) in dati" :key="index" :data="dato" class="col-6">
     </vueColFooter>
 </div>

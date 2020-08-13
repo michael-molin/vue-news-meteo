@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="row col-12">
-          <h1 class="text-center"><vue-fontawesome icon="vimeo" size="3" color="green"></vue-fontawesome>UE NEWS</h1>
+          <h1 class="text-center"><img class="logo" src="https://vuejs.org/images/logo.png" alt="">ue News</h1>
         </div>
 
     </div>
@@ -9,10 +9,15 @@
 
 
 
-<style lenght="scss" scoped>
+<style lang="scss" scoped>
     .container {
         width: 100vw;
         padding: 20px;
+        line-height: normal;
+        .logo {
+          width: 50px;
+          height: 50px;
+        }
     }
 
     h1 {
@@ -20,9 +25,5 @@
         font-weight: bold;
     }
 
-    .fa-vuejs {
-      width: 50px;
-      height: 50px;
-      color: black;
-    }
+
 </style>

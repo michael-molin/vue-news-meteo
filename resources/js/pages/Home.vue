@@ -1,9 +1,10 @@
 <template>
-    <div class="container">
+    <div class="main-page">
         <vueHeader> </vueHeader>
         <vueMain> </vueMain>
         <vueFooter> </vueFooter>
     </div>
+
 
 </template>
 <script>                                                                        // Script init vue
@@ -23,7 +24,8 @@
 };
 </script>
 <style leng="scss" scoped>
-    .container {
+    .main-page {
         width: 100vw;
+        background-color: white;
     }
 </style>

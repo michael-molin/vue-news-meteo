@@ -1,9 +1,11 @@
 <template>
-    <div class="container">
-        <!-- <vueSearch :valoreInput="valInput"></vueSearch> -->
-        <!-- clicked in evento in ascolto  -->
-        <vueMeteo v-model="dataMeteo" :data="dataMeteo"></vueMeteo>
-        <vueSearch @clicked="onClickChild" @keypress.13="onClickChild"></vueSearch>
+    <div>
+        <div class="full-width">
+            <div class="container barra-flex">
+                <vueSearch class="search" @clicked="onClickChild" @keypress.13="onClickChild"></vueSearch>
+                <vueMeteo class="meteo" v-model="dataMeteo" :data="dataMeteo"></vueMeteo>
+            </div>
+        </div>
         <vueArticle v-for="(article, index) in articles" :key="index" :data="article"></vueArticle>
     </div>
 
@@ -45,21 +47,7 @@
                         response.on('data', function(chunk) { str += chunk; }); // PUSHA i CHUNK DENTRO STR
                         response.on('end', function() {
                           var localizzazione = JSON.parse(str); // trasformo la stringa in OGGETTO
-                          // console.log(localizzazione);
-                          // console.log(localizzazione.location.city);
                           var localita = localizzazione.location.city;
-                          // var oldArray = localizzazioneStr.split(',');
-                          // // console.log(oldArray[3]); // stampo la CITY con chiave
-                          // var city = oldArray[3];
-                          // var newCity = city.split(':');
-                          // var nomeCitta = newCity[1];
-                          // // console.log(nomeCitta);
-                          // var a = city.split('"');
-                          // // console.log(a[3]);
-                          // var localita = a[3];
-                          // console.log(localita);
-
-
                           // CHIAMATA CHE PRENDE LA LOCALITA DALL IP E RESTITUISCE METEO
                           axios({
                               "method": "GET",
@@ -89,7 +77,6 @@
                           }).catch((error) => {
                               console.log(error);
                           })
-
                       });
                     }).end();
                 });
@@ -111,7 +98,19 @@
                     "media": "True"
                 }
             }).then((response) => {
-                self.articles = response.data.articles;
+                var rawArticles = response.data.articles;
+                var primaPagina = false;
+                for (var index in rawArticles) {
+                    var article = rawArticles[index];
+                    if (article.media != null && primaPagina == false) {
+                        primaPagina = true;
+                        article.primaPagina= true;
+                        self.articles.unshift(article);
+                    } else {
+                        article.primaPagina= false;
+                        self.articles.push(article);
+                    }
+                }
             }).catch((error) => {
                 console.log(error)
             });
@@ -153,6 +152,17 @@
     }
 </script>
 
-<style media="SCSS">
-  
+<style lang="scss">
+
+
+    .full-width {
+        background-color: #41b883;
+        .barra-flex {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+    }
 </style>

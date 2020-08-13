@@ -1,9 +1,17 @@
 <template>
-  <div class="vueMeteo card container">
-      <h3> {{data.name}}</h3>
-      <p> {{data.main.temp}} °</p>
-      <img :src="data.iconPrefix + data.weather[0].icon + data.iconSuffix" alt="">
-      <p>{{data.weather[0].description}}</p>
+  <div class="vueMeteo">
+      <div class="flex testo-meteo">
+          <h5 class="text-center"> {{data.name}} {{data.main.temp}} °</h5>
+          <p>{{data.weather[0].description}}</p>
+          <!-- <h5 class="text-center">Località XX Gradi</h5>
+          <p>Tempo variabile</p> -->
+      </div>
+      <div class="flex">
+           <img class="meteo-icon" :src="data.iconPrefix + data.weather[0].icon + data.iconSuffix" alt="">
+           <!-- <img class="meteo-icon" src="http://openweathermap.org/img/wn/04d@2x.png" alt=""> -->
+      </div>
+
+
 
   </div>
 </template>
@@ -24,18 +32,19 @@ export default {
 
 <style lang="scss">
   .vueMeteo {
-    border-radius: 10px;
-    
-    img {
-      width: 150px;
-      margin: 0 auto;
-    }
-    h3 {
-      text-align: center;
-    }
+    display: flex;
+    flex-direction: row;
+    height: 65px;
     p {
       text-align: center;
       text-transform: capitalize;
+    }
+
+    .testo-meteo {
+        margin-top: 5px;
+    }
+    .meteo-icon {
+        width: 65px;
     }
 
   }

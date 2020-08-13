@@ -25,7 +25,6 @@
         "vue-template-compiler": "^2.6.11"
     },
     "dependencies": {
-        "@fortawesome/fontawesome-free": "^5.14.0",
         "font-awesome": "^4.7.0",
         "newsapi": "^2.4.1",
         "vue-axios-cors": "^1.0.1",
